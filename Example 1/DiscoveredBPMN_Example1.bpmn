@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:definitions xmlns:ns5="http://www.omg.org/spec/DD/20100524/DC" xmlns:ns2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:ns4="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:ns3="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" exporter="DEMO2BPMN-2021">
+  <ns2:collaboration id="coll-DEMO2BPMN">
+    <ns2:participant id="Participant_6d9601e9-8fae-4151-aa25-d6368fd0852c" name="CustomerDEMO-TryOut" processRef="Process_fd38fa31-04a1-49bf-8bde-3f01ed9e9a33" />
+    <ns2:participant id="Participant_7290a2b5-d487-4ab6-8089-c355dab5208d" name="SupplierDEMO-TryOut" processRef="Process_ffb459d3-9198-4449-8abb-4bb32cbc335c" />
+    <ns2:messageFlow id="MessageFlow_fa21f07e-9dd4-4c3b-ae9f-f95bd2e21981" sourceRef="Activity_f31d5e15-00ca-40c5-bb16-2723d0eaf323" targetRef="Event_93d1577c-d2c7-4f85-bd22-711e0e013b63" />
+    <ns2:messageFlow id="MessageFlow_2e54053b-2471-47e3-b70c-b0155f8cd58b" sourceRef="Activity_097086ea-1ccd-4a8b-87c1-f94b89ab18f7" targetRef="Event_8fa3140e-08d7-4649-baf3-edbf0798965b" />
+    <ns2:messageFlow id="MessageFlow_4d59884a-2e32-49ae-96b8-9792cbb263ba" sourceRef="Activity_29723e1a-21c0-4631-8903-5b33fe7464ab" targetRef="Event_dd303270-bfcf-439a-9916-87ffcfac276b" />
+  </ns2:collaboration>
+  <ns2:process id="Process_fd38fa31-04a1-49bf-8bde-3f01ed9e9a33" isExecutable="true">
+    <ns2:laneSet id="LaneSet_d071b54d-c173-4a8d-b8de-ba41ec68a497">
+      <ns2:lane id="Lane_23869d69-ba72-4f51-a75e-0af0da834b58" name="Initiator TK1">
+        <ns2:flowNodeRef>Event_9ba45dbb-12ac-4eca-b9e9-58134025a1fb</ns2:flowNodeRef>
+        <ns2:flowNodeRef>Activity_7f56a22b-b67d-4074-ae19-57682835152e</ns2:flowNodeRef>
+        <ns2:flowNodeRef>Activity_f31d5e15-00ca-40c5-bb16-2723d0eaf323</ns2:flowNodeRef>
+        <ns2:flowNodeRef>Event_dd303270-bfcf-439a-9916-87ffcfac276b</ns2:flowNodeRef>
+        <ns2:flowNodeRef>Activity_097086ea-1ccd-4a8b-87c1-f94b89ab18f7</ns2:flowNodeRef>
+        <ns2:flowNodeRef>Event_006939df-c3a2-44a1-87f5-f26bbb89b2c4</ns2:flowNodeRef>
+      </ns2:lane>
+    </ns2:laneSet>
+    <ns2:startEvent id="Event_9ba45dbb-12ac-4eca-b9e9-58134025a1fb" name="INITIAL">
+      <ns2:outgoing>Flow_70cbc62f-3513-4620-a28f-3a1d45964b7a</ns2:outgoing>
+      <ns2:messageEventDefinition id="EventDefinition_3642783e-214e-482e-ad26-ccd97138a5c4" />
+    </ns2:startEvent>
+    <ns2:manualTask id="Activity_7f56a22b-b67d-4074-ae19-57682835152e" name="Ask for product">
+      <ns2:incoming>Flow_70cbc62f-3513-4620-a28f-3a1d45964b7a</ns2:incoming>
+      <ns2:outgoing>Flow_ff06da7a-320a-4b16-a6dd-0a5dc9cc5e87</ns2:outgoing>
+    </ns2:manualTask>
+    <ns2:sendTask id="Activity_f31d5e15-00ca-40c5-bb16-2723d0eaf323" name="Fill form">
+      <ns2:incoming>Flow_ff06da7a-320a-4b16-a6dd-0a5dc9cc5e87</ns2:incoming>
+      <ns2:outgoing>Flow_ef015fe7-99f5-4dcb-a0bb-4db46f217776</ns2:outgoing>
+    </ns2:sendTask>
+    <ns2:intermediateCatchEvent id="Event_dd303270-bfcf-439a-9916-87ffcfac276b" name="Send product received">
+      <ns2:incoming>Flow_ef015fe7-99f5-4dcb-a0bb-4db46f217776</ns2:incoming>
+      <ns2:outgoing>Flow_f43d53bb-9639-4ebf-91cb-aa1c36abcfa9</ns2:outgoing>
+      <ns2:messageEventDefinition id="EventDefinition_fb966e06-c0ae-4b17-82ee-cd96973e4e31" />
+    </ns2:intermediateCatchEvent>
+    <ns2:sendTask id="Activity_097086ea-1ccd-4a8b-87c1-f94b89ab18f7" name="Accept ProductDemoTryOut">
+      <ns2:incoming>Flow_f43d53bb-9639-4ebf-91cb-aa1c36abcfa9</ns2:incoming>
+      <ns2:outgoing>Flow_dba19a83-5e74-4c70-ba84-15053b9ecf7b</ns2:outgoing>
+    </ns2:sendTask>
+    <ns2:endEvent id="Event_006939df-c3a2-44a1-87f5-f26bbb89b2c4" name="END">
+      <ns2:incoming>Flow_dba19a83-5e74-4c70-ba84-15053b9ecf7b</ns2:incoming>
+    </ns2:endEvent>
+    <ns2:sequenceFlow id="Flow_70cbc62f-3513-4620-a28f-3a1d45964b7a" sourceRef="Event_9ba45dbb-12ac-4eca-b9e9-58134025a1fb" targetRef="Activity_7f56a22b-b67d-4074-ae19-57682835152e" />
+    <ns2:sequenceFlow id="Flow_ff06da7a-320a-4b16-a6dd-0a5dc9cc5e87" sourceRef="Activity_7f56a22b-b67d-4074-ae19-57682835152e" targetRef="Activity_f31d5e15-00ca-40c5-bb16-2723d0eaf323" />
+    <ns2:sequenceFlow id="Flow_ef015fe7-99f5-4dcb-a0bb-4db46f217776" sourceRef="Activity_f31d5e15-00ca-40c5-bb16-2723d0eaf323" targetRef="Event_dd303270-bfcf-439a-9916-87ffcfac276b" />
+    <ns2:sequenceFlow id="Flow_f43d53bb-9639-4ebf-91cb-aa1c36abcfa9" sourceRef="Event_dd303270-bfcf-439a-9916-87ffcfac276b" targetRef="Activity_097086ea-1ccd-4a8b-87c1-f94b89ab18f7" />
+    <ns2:sequenceFlow id="Flow_dba19a83-5e74-4c70-ba84-15053b9ecf7b" sourceRef="Activity_097086ea-1ccd-4a8b-87c1-f94b89ab18f7" targetRef="Event_006939df-c3a2-44a1-87f5-f26bbb89b2c4" />
+  </ns2:process>
+  <ns2:process id="Process_ffb459d3-9198-4449-8abb-4bb32cbc335c" isExecutable="true">
+    <ns2:laneSet id="LaneSet_a1c0967b-55ad-4938-966b-5065cddff509">
+      <ns2:lane id="Lane_c479a60b-f931-4161-afa8-a0a2c31d878c" name="Executor TK1">
+        <ns2:flowNodeRef>Event_93d1577c-d2c7-4f85-bd22-711e0e013b63</ns2:flowNodeRef>
+        <ns2:flowNodeRef>Activity_b66a6312-41a6-4b2d-b151-2b8a00c44365</ns2:flowNodeRef>
+        <ns2:flowNodeRef>Activity_29723e1a-21c0-4631-8903-5b33fe7464ab</ns2:flowNodeRef>
+        <ns2:flowNodeRef>Event_8fa3140e-08d7-4649-baf3-edbf0798965b</ns2:flowNodeRef>
+        <ns2:flowNodeRef>Event_dbb85448-351a-47f8-9260-08a5f3eef47e</ns2:flowNodeRef>
+      </ns2:lane>
+    </ns2:laneSet>
+    <ns2:startEvent id="Event_93d1577c-d2c7-4f85-bd22-711e0e013b63" name="INITIAL">
+      <ns2:outgoing>Flow_b2869ace-2f58-4ec6-8653-23e2d458564e</ns2:outgoing>
+      <ns2:messageEventDefinition id="EventDefinition_1ad4bd9f-6330-4bdc-823c-111b59e9c14b" />
+    </ns2:startEvent>
+    <ns2:manualTask id="Activity_b66a6312-41a6-4b2d-b151-2b8a00c44365" name="Produce Product">
+      <ns2:incoming>Flow_b2869ace-2f58-4ec6-8653-23e2d458564e</ns2:incoming>
+      <ns2:outgoing>Flow_d2af769c-46d7-43c9-94f0-66d1a55f9544</ns2:outgoing>
+    </ns2:manualTask>
+    <ns2:sendTask id="Activity_29723e1a-21c0-4631-8903-5b33fe7464ab" name="Send product">
+      <ns2:incoming>Flow_d2af769c-46d7-43c9-94f0-66d1a55f9544</ns2:incoming>
+      <ns2:outgoing>Flow_b7791d34-0e8d-4999-9cb8-9eeb115badbf</ns2:outgoing>
+    </ns2:sendTask>
+    <ns2:intermediateCatchEvent id="Event_8fa3140e-08d7-4649-baf3-edbf0798965b" name="Accept ProductDemoTryOut received">
+      <ns2:incoming>Flow_b7791d34-0e8d-4999-9cb8-9eeb115badbf</ns2:incoming>
+      <ns2:outgoing>Flow_439ff5bf-acae-4bb3-8703-dd3c704c05fa</ns2:outgoing>
+      <ns2:messageEventDefinition id="EventDefinition_65519291-85dd-4b6f-8321-060110d10733" />
+    </ns2:intermediateCatchEvent>
+    <ns2:endEvent id="Event_dbb85448-351a-47f8-9260-08a5f3eef47e" name="END">
+      <ns2:incoming>Flow_439ff5bf-acae-4bb3-8703-dd3c704c05fa</ns2:incoming>
+    </ns2:endEvent>
+    <ns2:sequenceFlow id="Flow_b2869ace-2f58-4ec6-8653-23e2d458564e" sourceRef="Event_93d1577c-d2c7-4f85-bd22-711e0e013b63" targetRef="Activity_b66a6312-41a6-4b2d-b151-2b8a00c44365" />
+    <ns2:sequenceFlow id="Flow_d2af769c-46d7-43c9-94f0-66d1a55f9544" sourceRef="Activity_b66a6312-41a6-4b2d-b151-2b8a00c44365" targetRef="Activity_29723e1a-21c0-4631-8903-5b33fe7464ab" />
+    <ns2:sequenceFlow id="Flow_b7791d34-0e8d-4999-9cb8-9eeb115badbf" sourceRef="Activity_29723e1a-21c0-4631-8903-5b33fe7464ab" targetRef="Event_8fa3140e-08d7-4649-baf3-edbf0798965b" />
+    <ns2:sequenceFlow id="Flow_439ff5bf-acae-4bb3-8703-dd3c704c05fa" sourceRef="Event_8fa3140e-08d7-4649-baf3-edbf0798965b" targetRef="Event_dbb85448-351a-47f8-9260-08a5f3eef47e" />
+  </ns2:process>
+  <ns4:BPMNDiagram id="diagram-DEMO2BPMN">
+    <ns4:BPMNPlane id="plane-DEMO2BPMN" bpmnElement="coll-DEMO2BPMN">
+      <ns4:BPMNShape id="Participant_6d9601e9-8fae-4151-aa25-d6368fd0852c_di" bpmnElement="Participant_6d9601e9-8fae-4151-aa25-d6368fd0852c" isHorizontal="true">
+        <ns5:Bounds x="1" y="50" width="1650" height="170" />
+      </ns4:BPMNShape>
+      <ns4:BPMNShape id="Lane_23869d69-ba72-4f51-a75e-0af0da834b58_di" bpmnElement="Lane_23869d69-ba72-4f51-a75e-0af0da834b58" isHorizontal="true">
+        <ns5:Bounds x="31" y="50" width="1620" height="170" />
+      </ns4:BPMNShape>
+      <ns4:BPMNEdge id="Edge_1d31f566-b9df-4c45-b691-02d330e2d93c" bpmnElement="Flow_dba19a83-5e74-4c70-ba84-15053b9ecf7b">
+        <ns3:waypoint x="821" y="135" />
+        <ns3:waypoint x="821" y="135" />
+        <ns3:waypoint x="871" y="135" />
+        <ns3:waypoint x="871" y="135" />
+      </ns4:BPMNEdge>
+      <ns4:BPMNEdge id="Edge_f5dca6ef-bd85-47ac-8eab-a9c776bdc2f5" bpmnElement="Flow_f43d53bb-9639-4ebf-91cb-aa1c36abcfa9">
+        <ns3:waypoint x="607" y="135" />
+        <ns3:waypoint x="607" y="135" />
+        <ns3:waypoint x="721" y="135" />
+        <ns3:waypoint x="721" y="135" />
+      </ns4:BPMNEdge>
+      <ns4:BPMNEdge id="Edge_fe62f0b6-180e-4c3d-b132-893866961d4a" bpmnElement="Flow_ef015fe7-99f5-4dcb-a0bb-4db46f217776">
+        <ns3:waypoint x="521" y="135" />
+        <ns3:waypoint x="521" y="135" />
+        <ns3:waypoint x="571" y="135" />
+        <ns3:waypoint x="571" y="135" />
+      </ns4:BPMNEdge>
+      <ns4:BPMNEdge id="Edge_1929c85c-e12c-40e9-ba2c-f3cf4c8de58e" bpmnElement="Flow_ff06da7a-320a-4b16-a6dd-0a5dc9cc5e87">
+        <ns3:waypoint x="371" y="135" />
+        <ns3:waypoint x="371" y="135" />
+        <ns3:waypoint x="421" y="135" />
+        <ns3:waypoint x="421" y="135" />
+      </ns4:BPMNEdge>
+      <ns4:BPMNEdge id="Edge_04326d44-d149-4dda-ac7c-bdfb117a6b8e" bpmnElement="Flow_70cbc62f-3513-4620-a28f-3a1d45964b7a">
+        <ns3:waypoint x="157" y="135" />
+        <ns3:waypoint x="157" y="135" />
+        <ns3:waypoint x="271" y="135" />
+        <ns3:waypoint x="271" y="135" />
+      </ns4:BPMNEdge>
+      <ns4:BPMNShape id="Event_9ba45dbb-12ac-4eca-b9e9-58134025a1fb_di" bpmnElement="Event_9ba45dbb-12ac-4eca-b9e9-58134025a1fb">
+        <ns5:Bounds x="121" y="117" width="36" height="36" />
+      </ns4:BPMNShape>
+      <ns4:BPMNShape id="Activity_7f56a22b-b67d-4074-ae19-57682835152e_di" bpmnElement="Activity_7f56a22b-b67d-4074-ae19-57682835152e">
+        <ns5:Bounds x="271" y="95" width="100" height="80" />
+      </ns4:BPMNShape>
+      <ns4:BPMNShape id="Activity_f31d5e15-00ca-40c5-bb16-2723d0eaf323_di" bpmnElement="Activity_f31d5e15-00ca-40c5-bb16-2723d0eaf323">
+        <ns5:Bounds x="421" y="95" width="100" height="80" />
+      </ns4:BPMNShape>
+      <ns4:BPMNShape id="Event_dd303270-bfcf-439a-9916-87ffcfac276b_di" bpmnElement="Event_dd303270-bfcf-439a-9916-87ffcfac276b">
+        <ns5:Bounds x="571" y="117" width="36" height="36" />
+      </ns4:BPMNShape>
+      <ns4:BPMNShape id="Activity_097086ea-1ccd-4a8b-87c1-f94b89ab18f7_di" bpmnElement="Activity_097086ea-1ccd-4a8b-87c1-f94b89ab18f7">
+        <ns5:Bounds x="721" y="95" width="100" height="80" />
+      </ns4:BPMNShape>
+      <ns4:BPMNShape id="Event_006939df-c3a2-44a1-87f5-f26bbb89b2c4_di" bpmnElement="Event_006939df-c3a2-44a1-87f5-f26bbb89b2c4">
+        <ns5:Bounds x="871" y="117" width="36" height="36" />
+      </ns4:BPMNShape>
+      <ns4:BPMNShape id="Participant_7290a2b5-d487-4ab6-8089-c355dab5208d_di" bpmnElement="Participant_7290a2b5-d487-4ab6-8089-c355dab5208d" isHorizontal="true">
+        <ns5:Bounds x="2" y="270" width="1500" height="170" />
+      </ns4:BPMNShape>
+      <ns4:BPMNShape id="Lane_c479a60b-f931-4161-afa8-a0a2c31d878c_di" bpmnElement="Lane_c479a60b-f931-4161-afa8-a0a2c31d878c" isHorizontal="true">
+        <ns5:Bounds x="32" y="270" width="1470" height="170" />
+      </ns4:BPMNShape>
+      <ns4:BPMNEdge id="Edge_94f59c7e-d013-4b5b-a3a3-a26e60b2b984" bpmnElement="Flow_439ff5bf-acae-4bb3-8703-dd3c704c05fa">
+        <ns3:waypoint x="633" y="355" />
+        <ns3:waypoint x="633" y="355" />
+        <ns3:waypoint x="747" y="355" />
+        <ns3:waypoint x="747" y="355" />
+      </ns4:BPMNEdge>
+      <ns4:BPMNEdge id="Edge_f13ffa40-ff79-4712-ac6c-5d177de3b4ea" bpmnElement="Flow_b7791d34-0e8d-4999-9cb8-9eeb115badbf">
+        <ns3:waypoint x="547" y="355" />
+        <ns3:waypoint x="547" y="355" />
+        <ns3:waypoint x="597" y="355" />
+        <ns3:waypoint x="597" y="355" />
+      </ns4:BPMNEdge>
+      <ns4:BPMNEdge id="Edge_03ffa9bb-f4b9-475c-8396-16f4d2b0dcd2" bpmnElement="Flow_d2af769c-46d7-43c9-94f0-66d1a55f9544">
+        <ns3:waypoint x="397" y="355" />
+        <ns3:waypoint x="397" y="355" />
+        <ns3:waypoint x="447" y="355" />
+        <ns3:waypoint x="447" y="355" />
+      </ns4:BPMNEdge>
+      <ns4:BPMNEdge id="Edge_1a4f32b7-5aa1-4008-93f6-bef6bd04fff4" bpmnElement="Flow_b2869ace-2f58-4ec6-8653-23e2d458564e">
+        <ns3:waypoint x="183" y="355" />
+        <ns3:waypoint x="183" y="355" />
+        <ns3:waypoint x="297" y="355" />
+        <ns3:waypoint x="297" y="355" />
+      </ns4:BPMNEdge>
+      <ns4:BPMNShape id="Event_93d1577c-d2c7-4f85-bd22-711e0e013b63_di" bpmnElement="Event_93d1577c-d2c7-4f85-bd22-711e0e013b63">
+        <ns5:Bounds x="147" y="337" width="36" height="36" />
+      </ns4:BPMNShape>
+      <ns4:BPMNShape id="Activity_b66a6312-41a6-4b2d-b151-2b8a00c44365_di" bpmnElement="Activity_b66a6312-41a6-4b2d-b151-2b8a00c44365">
+        <ns5:Bounds x="297" y="315" width="100" height="80" />
+      </ns4:BPMNShape>
+      <ns4:BPMNShape id="Activity_29723e1a-21c0-4631-8903-5b33fe7464ab_di" bpmnElement="Activity_29723e1a-21c0-4631-8903-5b33fe7464ab">
+        <ns5:Bounds x="447" y="315" width="100" height="80" />
+      </ns4:BPMNShape>
+      <ns4:BPMNShape id="Event_8fa3140e-08d7-4649-baf3-edbf0798965b_di" bpmnElement="Event_8fa3140e-08d7-4649-baf3-edbf0798965b">
+        <ns5:Bounds x="597" y="337" width="36" height="36" />
+      </ns4:BPMNShape>
+      <ns4:BPMNShape id="Event_dbb85448-351a-47f8-9260-08a5f3eef47e_di" bpmnElement="Event_dbb85448-351a-47f8-9260-08a5f3eef47e">
+        <ns5:Bounds x="747" y="337" width="36" height="36" />
+      </ns4:BPMNShape>
+      <ns4:BPMNEdge id="MessageFlow_fa21f07e-9dd4-4c3b-ae9f-f95bd2e21981_di" bpmnElement="MessageFlow_fa21f07e-9dd4-4c3b-ae9f-f95bd2e21981">
+        <ns3:waypoint x="471" y="175" />
+        <ns3:waypoint x="471" y="200" />
+        <ns3:waypoint x="165" y="200" />
+        <ns3:waypoint x="165" y="337" />
+      </ns4:BPMNEdge>
+      <ns4:BPMNEdge id="MessageFlow_2e54053b-2471-47e3-b70c-b0155f8cd58b_di" bpmnElement="MessageFlow_2e54053b-2471-47e3-b70c-b0155f8cd58b">
+        <ns3:waypoint x="771" y="175" />
+        <ns3:waypoint x="771" y="200" />
+        <ns3:waypoint x="615" y="200" />
+        <ns3:waypoint x="615" y="337" />
+      </ns4:BPMNEdge>
+      <ns4:BPMNEdge id="MessageFlow_4d59884a-2e32-49ae-96b8-9792cbb263ba_di" bpmnElement="MessageFlow_4d59884a-2e32-49ae-96b8-9792cbb263ba">
+        <ns3:waypoint x="497" y="315" />
+        <ns3:waypoint x="497" y="290" />
+        <ns3:waypoint x="589" y="290" />
+        <ns3:waypoint x="589" y="153" />
+      </ns4:BPMNEdge>
+    </ns4:BPMNPlane>
+  </ns4:BPMNDiagram>
+</ns2:definitions>
